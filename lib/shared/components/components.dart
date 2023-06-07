@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shop_app/shared/components/constants.dart';
 
 Widget defaultFormField({
@@ -16,7 +17,7 @@ Widget defaultFormField({
   bool filled = true,
   Function()? onTap,
   Function()? show_password,
-  Function(String)? onSubmitt,
+  void Function(String)? onSubmitt,
   void Function(String)? onchanged,
   Icon? suffix,
   Function()? suffixPressed,
@@ -82,3 +83,31 @@ void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
         context, MaterialPageRoute(builder: (context) => widget), (route) {
       return false;
     });
+
+void showToast({required String text, required ToastStates state}) =>
+    Fluttertoast.showToast(
+        msg: text,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 5,
+        backgroundColor: chooseToastColor(state),
+        textColor: Colors.white,
+        fontSize: 16.0);
+
+enum ToastStates { SUCCESS, ERROR, WARNING }
+
+Color chooseToastColor(ToastStates state) {
+  Color color;
+  switch (state) {
+    case ToastStates.SUCCESS:
+      color = Colors.green;
+      break;
+    case ToastStates.ERROR:
+      color = Colors.red;
+      break;
+    case ToastStates.WARNING:
+      color = Colors.amber;
+      break;
+  }
+  return color;
+}

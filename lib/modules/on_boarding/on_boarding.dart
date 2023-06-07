@@ -5,6 +5,7 @@ import 'package:shop_app/models/on_boarding_model/on_boarding_model.dart';
 import 'package:shop_app/modules/login/login.dart';
 import 'package:shop_app/shared/components/components.dart';
 import 'package:shop_app/shared/components/constants.dart';
+import 'package:shop_app/shared/network/local/cache_helper.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -15,6 +16,16 @@ class OnBoardingScreen extends StatefulWidget {
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   var boardingController = PageController();
   bool isLast = false;
+  void submit() {
+    CacheHelper.saveData(
+      key: 'onBoarding',
+      value: true,
+    ).then((value) {
+      if (value) {
+        navigateAndFinish(context, ShopLogIn());
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +34,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         actions: [
           TextButton(
               onPressed: () {
-                navigateAndFinish(context, ShopLogIn());
+                submit();
               },
               child: Text(
                 'SKIP',
@@ -74,7 +85,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 IconButton(
                   onPressed: () {
                     if (isLast) {
-                      navigateAndFinish(context, ShopLogIn());
+                      submit();
                     } else {
                       boardingController.nextPage(
                           duration: Duration(milliseconds: 750),

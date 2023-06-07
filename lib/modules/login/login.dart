@@ -2,10 +2,12 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shop_app/layouts/shop_app_layout/home_layout.dart';
 import 'package:shop_app/modules/login/cubit/login_cubit.dart';
 import 'package:shop_app/modules/login/cubit/login_states.dart';
 import 'package:shop_app/modules/register/register_screen.dart';
 import 'package:shop_app/shared/components/components.dart';
+import 'package:shop_app/shared/network/local/cache_helper.dart';
 
 class ShopLogIn extends StatelessWidget {
   ShopLogIn({super.key});
@@ -21,24 +23,12 @@ class ShopLogIn extends StatelessWidget {
         listener: (context, state) {
           if (state is ShopLoginSuccessState) {
             if (state.loginModel.status!) {
-              //..
-              Fluttertoast.showToast(
-                  msg: state.loginModel.message!,
-                  toastLength: Toast.LENGTH_LONG,
-                  gravity: ToastGravity.BOTTOM,
-                  timeInSecForIosWeb: 5,
-                  backgroundColor: Colors.green,
-                  textColor: Colors.white,
-                  fontSize: 16.0);
+              CacheHelper.saveData(
+                      key: 'token', value: state.loginModel.data!.token)
+                  .then((value) => navigateAndFinish(context, ShopAppHome()));
             } else {
-              Fluttertoast.showToast(
-                  msg: state.loginModel.message!,
-                  toastLength: Toast.LENGTH_LONG,
-                  gravity: ToastGravity.BOTTOM,
-                  timeInSecForIosWeb: 5,
-                  backgroundColor: Colors.red,
-                  textColor: Colors.white,
-                  fontSize: 16.0);
+              showToast(
+                  text: state.loginModel.message!, state: ToastStates.ERROR);
             }
           }
         },
@@ -86,24 +76,24 @@ class ShopLogIn extends StatelessWidget {
                           height: 15,
                         ),
                         defaultFormField(
-                            isPassword: ShopLoginCubit.get(context).isPassword,
-                            suffix: ShopLoginCubit.get(context).isPassword
-                                ? Icon(Icons.remove_red_eye_outlined)
-                                : Icon(Icons.visibility_off),
-                            suffixPressed: () {
-                              ShopLoginCubit.get(context)
-                                  .changePswdVisibility();
-                            },
-                            controller: passwordController,
-                            hintText: 'Your Password',
-                            keyboardType: TextInputType.visiblePassword,
-                            prefix: Icon(Icons.email_outlined),
-                            validat: (value) {
-                              if (value!.isEmpty) {
-                                return 'Enter Your Password Please';
-                              }
-                              return null;
-                            }),
+                          isPassword: ShopLoginCubit.get(context).isPassword,
+                          suffix: ShopLoginCubit.get(context).isPassword
+                              ? Icon(Icons.remove_red_eye_outlined)
+                              : Icon(Icons.visibility_off),
+                          suffixPressed: () {
+                            ShopLoginCubit.get(context).changePswdVisibility();
+                          },
+                          controller: passwordController,
+                          hintText: 'Your Password',
+                          keyboardType: TextInputType.visiblePassword,
+                          prefix: Icon(Icons.email_outlined),
+                          validat: (value) {
+                            if (value!.isEmpty) {
+                              return 'Enter Your Password Please';
+                            }
+                            return null;
+                          },
+                        ),
                         SizedBox(
                           height: 25,
                         ),
