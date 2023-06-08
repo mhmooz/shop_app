@@ -22,7 +22,7 @@ ThemeData lightTheme = ThemeData(
   ),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: Colors.deepOrange),
+      selectedItemColor: defaultColor),
   textTheme: const TextTheme(
       displayLarge: TextStyle(
           color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600)),
@@ -41,9 +41,10 @@ ThemeData darkTheme = ThemeData(
   textTheme: const TextTheme(
       displayLarge: TextStyle(
           color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600)),
-  primarySwatch: Colors.deepOrange,
+  primaryColor: defaultColor,
   scaffoldBackgroundColor: HexColor("#18191a"),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    selectedItemColor: defaultColor,
       unselectedItemColor: Colors.grey, backgroundColor: HexColor("#3a3b3c")),
   fontFamily: 'MyFont',
 );

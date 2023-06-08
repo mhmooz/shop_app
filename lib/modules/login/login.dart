@@ -1,7 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shop_app/layouts/shop_app_layout/home_layout.dart';
 import 'package:shop_app/modules/login/cubit/login_cubit.dart';
 import 'package:shop_app/modules/login/cubit/login_states.dart';

@@ -1,5 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app/layouts/shop_app_layout/cubit/home_cubit.dart';
+import 'package:shop_app/layouts/shop_app_layout/cubit/home_states.dart';
 import 'package:shop_app/layouts/shop_app_layout/home_layout.dart';
 import 'package:shop_app/modules/login/login.dart';
 import 'package:shop_app/modules/on_boarding/on_boarding.dart';
@@ -38,11 +41,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => HomeCubit()..getHomeData(),
+        ),
+      ],
+      child: BlocConsumer<HomeCubit, ShopHomeStates>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return MaterialApp(
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.light,
       home: startWidget,
+    );
+        },
+      ),
     );
   }
 }

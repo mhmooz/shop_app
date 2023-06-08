@@ -13,14 +13,14 @@ class OnBoardingModel {
 List<OnBoardingModel> onBoardingList = [
   OnBoardingModel(
       image: 'assets/images/on_boarding_1.jpg',
-      title: 'Screen Title 1',
-      body: 'Screen Body 1'),
+      title: 'OZ STYLE',
+      body: 'The Modern Fashion Way'),
   OnBoardingModel(
       image: 'assets/images/on_boarding_2.jpg',
-      title: 'Screen Title 2',
-      body: 'Screen Body 2'),
+      title: 'With Our New App ',
+      body: 'You Can Shop From Your Home!'),
   OnBoardingModel(
       image: 'assets/images/on_boarding_3.jpg',
-      title: 'Screen Title 3',
-      body: 'Screen Body 3'),
+      title: 'Here You Can Find Your Best Taste In Clothes',
+      body: 'Have Fun Shopping'),
 ];
