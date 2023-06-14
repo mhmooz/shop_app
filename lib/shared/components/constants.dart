@@ -6,5 +6,8 @@ import 'components.dart';
 
 const defaultColor = Colors.blueAccent;
 
-void signOut(context) {CacheHelper.removeData(key: 'token')
-                    .then((value) => navigateAndFinish(context, ShopLogIn()));}
+void signOut(context) {
+  CacheHelper.removeData(key: 'token').then((value) {
+    navigateAndFinish(context, ShopLogIn());
+  });
+}

@@ -7,7 +7,7 @@ import 'package:shop_app/shared/components/components.dart';
 
 // ignore: must_be_immutable
 class ShopAppHome extends StatelessWidget {
-  ShopAppHome({super.key});
+  const ShopAppHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,25 +16,27 @@ class ShopAppHome extends StatelessWidget {
       builder: (context, state) {
         HomeCubit homeCubit = HomeCubit.get(context);
         return Scaffold(
-          backgroundColor: Colors.grey,
+          backgroundColor: Colors.white,
           appBar: AppBar(
             title: Text(homeCubit.titles[homeCubit.currentIndex]),
+            centerTitle: true,
             actions: [
               IconButton(
                   onPressed: () {
-                    navigateTo(context, SearchScreen());
+                    navigateTo(context,SearchScreen());
                   },
-                  icon: Icon(Icons.search)),
+                  icon: const Icon(Icons.search)),
             ],
           ),
           body: homeCubit.screens[homeCubit.currentIndex],
           bottomNavigationBar: BottomNavigationBar(
               currentIndex: homeCubit.currentIndex,
               onTap: (index) {
+                print(token);
                 homeCubit.changeBottomIndex(index);
               },
               type: BottomNavigationBarType.fixed,
-              items: [
+              items: const [
                 BottomNavigationBarItem(
                     icon: Icon(Icons.shopping_cart_outlined),
                     label: "Products"),

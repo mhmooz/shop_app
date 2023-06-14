@@ -4,7 +4,7 @@ class CacheHelper {
   static SharedPreferences? sharedPreferences;
 
   static init() async {
-    sharedPreferences = await SharedPreferences.getInstance();
+   return sharedPreferences = await SharedPreferences.getInstance();
   }
 
   static dynamic getData({
@@ -22,6 +22,8 @@ class CacheHelper {
     if (value is bool) return await sharedPreferences!.setBool(key, value);
     return await sharedPreferences!.setDouble(key, value);
   }
+
+  
 
 //SIGN OUT
   static Future<bool> removeData({

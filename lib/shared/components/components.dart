@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shop_app/shared/components/constants.dart';
 
+import '../network/local/cache_helper.dart';
+
 Widget defaultFormField({
   required TextEditingController? controller,
   required String hintText,
@@ -112,7 +114,8 @@ Color chooseToastColor(ToastStates state) {
   return color;
 }
 
-String? token = '';
+String? token = CacheHelper.getData(key: 'token');
+//oqzuFNe5ViYNIS0sSmGcIu9Yeaag0BNS8k2Esc2qChIiLq1iyMyd1tct8OyOpuFTLDAMHj
 // ===================================================================================================================================================
 void printFullText(String? text) {
   final pattern = RegExp('.{1,800}');

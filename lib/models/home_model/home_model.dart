@@ -50,6 +50,18 @@ class ProductModel {
     name = json['name'];
     inFavourites = json['in_favorites'];
     inCart = json['in_cart'];
-
   }
 }
+
+//this one i created just for fun..
+class HeadersModel {
+  final String? image;
+
+  HeadersModel({required this.image});
+}
+
+List<HeadersModel> headersList = [
+  HeadersModel(image:'assets/images/headers/headers_1.jpg'),
+  HeadersModel(image: 'assets/images/headers/headers_2.jpg'),
+  HeadersModel(image: 'assets/images/headers/headers_3.jpg'),
+];

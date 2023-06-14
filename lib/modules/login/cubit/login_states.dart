@@ -18,3 +18,27 @@ class ShopLoginErrorState extends ShopLoginStates {
 }
 
 class ShopLoginChangePasswordVisiblity extends ShopLoginStates {}
+
+class ShopRegisterLoadingState extends ShopLoginStates {}
+
+class ShopRegisterSuccessState extends ShopLoginStates {
+ late final ShopLoginModel loginModel;
+  ShopRegisterSuccessState(this.loginModel);
+}
+
+class ShopRegisterErrorState extends ShopLoginStates {
+  final String error;
+  ShopRegisterErrorState(this.error);
+}
+
+class ShopUpdateProfileLoadingState extends ShopLoginStates {}
+
+class ShopUpdateProfileSuccessState extends ShopLoginStates {
+ late final ShopLoginModel loginModel;
+  ShopUpdateProfileSuccessState(this.loginModel);
+}
+
+class ShopUpdateProfileErrorState extends ShopLoginStates {
+  final String error;
+  ShopUpdateProfileErrorState(this.error);
+}

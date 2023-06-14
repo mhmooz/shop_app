@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:shop_app/models/on_boarding_model/on_boarding_model.dart';
 import 'package:shop_app/modules/login/login.dart';
@@ -8,6 +7,8 @@ import 'package:shop_app/shared/network/local/cache_helper.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingScreen extends StatefulWidget {
+  const OnBoardingScreen({super.key});
+
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
 }
@@ -35,7 +36,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               onPressed: () {
                 submit();
               },
-              child: Text(
+              child: const Text(
                 'SKIP',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ))
@@ -59,49 +60,49 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     });
                   }
                 },
-                physics: BouncingScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) =>
                     buildBoardingItem(onBoardingList[index]),
                 itemCount: onBoardingList.length,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Spacer(),
-                SizedBox(
+                const Spacer(),
+                const SizedBox(
                   width: 54,
                 ),
                 SmoothPageIndicator(
                   controller: boardingController,
                   count: onBoardingList.length,
-                  effect: WormEffect(activeDotColor: defaultColor),
+                  effect: const WormEffect(activeDotColor: defaultColor),
                 ),
-                Spacer(),
+                const Spacer(),
                 IconButton(
                   onPressed: () {
                     if (isLast) {
                       submit();
                     } else {
                       boardingController.nextPage(
-                          duration: Duration(milliseconds: 750),
+                          duration: const Duration(milliseconds: 750),
                           curve: Curves.fastEaseInToSlowEaseOut);
                     }
                   },
                   icon: isLast
-                      ? Icon(
+                      ? const Icon(
                           Icons.skip_next_rounded,
                           size: 30,
                         )
-                      : Icon(Icons.arrow_forward_ios),
+                      : const Icon(Icons.arrow_forward_ios),
                   color: defaultColor,
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             )
           ],
@@ -113,17 +114,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget buildBoardingItem(OnBoardingModel model) {
     return Column(
       children: [
-        Expanded(child: Image(image: AssetImage('${model.image}'))),
+        Expanded(child: Image(image: AssetImage(model.image))),
         Text(
-          '${model.title}',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          model.title,
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Text(
-          '${model.body}',
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+          model.body,
+          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
         ),
       ],
     );
